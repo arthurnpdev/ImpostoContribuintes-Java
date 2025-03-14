@@ -1,0 +1,56 @@
+package ImpostoContribuintes;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("Digite o número de contribuintes: ");
+		int N = scanner.nextInt();
+		scanner.nextLine();
+		
+		List<Contribuinte> contribuintes = new ArrayList<>();
+		
+		for(int i = 0; i < N; i++) {
+			System.out.println("Dados do contribuinte #" + (i + 1) + ":");
+			System.out.print("Pessoa Física ou jurídica (f/j)? ");
+			char tipo = scanner.nextLine().charAt(0);
+			
+			
+			System.out.print("Informe o nome do contribuinte: ");
+			String name = scanner.nextLine();
+			
+			System.out.print("Informe o rendimento anual: ");
+			double rendimentoAnual = scanner.nextDouble();
+			scanner.nextLine();
+			
+			if(tipo == 'f') {
+				System.out.print("Despesas com saúde: ");
+				double despesaSaude = scanner.nextDouble();
+				scanner.nextLine();
+				contribuintes.add(new Físico(name, rendimentoAnual, despesaSaude));
+			} else if(tipo == 'j') {
+				System.out.print("Número de empregados: ");
+				int numeroEmpregados = scanner.nextInt();
+				scanner.nextLine();
+				contribuintes.add(new Jurídico(name, rendimentoAnual, numeroEmpregados));		
+
+		}
+		
+		System.out.println("IMPOSTOS PAGOS:");
+		double totalImpostos = 0;
+		for(Contribuinte c : contribuintes) {
+			double imposto = c.calcularImposto();
+			System.out.println(c.getName() + ": R$ " + imposto);
+			totalImpostos += imposto;
+		}
+		
+		System.out.println("Impostos Totais: R$: " + totalImpostos);
+	}
+
+	}
+}
