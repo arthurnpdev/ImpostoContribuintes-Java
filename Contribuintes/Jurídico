@@ -1,0 +1,20 @@
+package ImpostoContribuintes;
+
+class Jurídico extends Contribuinte{
+	int numeroEmpregados;
+	
+	public Jurídico(String name, double rendimentoAnual, int numeroEmpregados) {
+		super(name, rendimentoAnual);
+		this.numeroEmpregados = numeroEmpregados;
+	}
+
+	@Override
+	public double calcularImposto() {
+		if (numeroEmpregados > 10) {
+			return getRendimentoAnual() * 0.14;		
+		}else {
+			return getRendimentoAnual() * 0.16;
+		}
+	}
+	
+}
