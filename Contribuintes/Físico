@@ -1,0 +1,23 @@
+package ImpostoContribuintes;
+
+class Físico extends Contribuinte{
+	private double despesaSaude;
+	
+	public Físico(String name, double rendimentoAnual, double despesaSaude) {
+		super(name, rendimentoAnual);
+		this.despesaSaude = despesaSaude;
+	}
+
+	@Override
+	public double calcularImposto() {
+		double imposto;
+		if(getRendimentoAnual() < 20000.00) {
+			imposto = getRendimentoAnual() * 0.15;
+		}else {
+			imposto = getRendimentoAnual() * 0.25;
+		}
+		
+		imposto -= despesaSaude * 0.50;
+		return Math.max(imposto, 0);
+	}
+}
