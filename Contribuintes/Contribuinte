@@ -1,0 +1,23 @@
+package ImpostoContribuintes;
+
+abstract class Contribuinte {
+	private String name;
+	private double rendimentoAnual;
+	
+	
+	public Contribuinte(String name, double rendimentoAnual) {
+		this.name = name;
+		this.rendimentoAnual = rendimentoAnual;
+	}
+	
+	String getName() {
+		return name;
+	}
+	
+	double getRendimentoAnual() {
+		return rendimentoAnual;
+	}
+	
+	 public abstract double calcularImposto();
+
+}
